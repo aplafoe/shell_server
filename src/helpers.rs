@@ -4,7 +4,7 @@ use derive_more::{Display, Error};
 
 #[derive(Display, Debug, Error)]
 pub enum Error {
-    InternalError,
+    InternalError
 }
 
 pub type RequestResult<T> = Result<T, Error>;
@@ -55,7 +55,7 @@ pub struct ShellResponse {
     pub output: String
 }
 
-#[derive(Deserialize)]
+#[derive(Serialize, Deserialize)]
 pub struct ShellCommand {
     pub target : String,
     pub command_name : String,

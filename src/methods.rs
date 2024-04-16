@@ -48,7 +48,7 @@ pub async fn net_info() -> Json<Vec<helpers::Networker>> {
         .collect())  
 }
 
-#[post("shell_command")]
+#[post("/shell_command")]
 pub async fn shell_command(req : Json<helpers::ShellCommand>) -> helpers::RequestResult<Json<helpers::ShellResponse>> {
 
     let out = Command::new(&req.target)
@@ -59,4 +59,9 @@ pub async fn shell_command(req : Json<helpers::ShellCommand>) -> helpers::Reques
         Ok(res) => Ok(Json(helpers::ShellResponse{output : String::from_utf8_lossy(&res.stdout).to_string()})),
         _ => Err(helpers::Error::InternalError),
     }
+}
+
+#[get("/set_time")]
+pub async fn set_time() -> actix_web::Result<actix_files::NamedFile> {
+    Ok(actix_files::NamedFile::open("static/set_time.html")?)
 }
