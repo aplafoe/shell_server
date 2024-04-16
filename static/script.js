@@ -26,14 +26,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function fetchUsage(type) {
         const urls = {
-            cpu: 'http://127.0.0.1:8080/cpu_usage',
-            ram: 'http://127.0.0.1:8080/ram_usage',
-            disk: 'http://127.0.0.1:8080/disk_usage',
-            net: 'http://127.0.0.1:8080/net_info'
+            cpu: window.location.href + 'cpu_usage',
+            ram: window.location.href + 'ram_usage',
+            disk: window.location.href + 'disk_usage',
+            net: window.location.href + 'net_info'
         };
 
         const url = urls[type];
-
+        
         fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function fetchPostRequest(body) {
-        return fetch('http://127.0.0.1:8080/shell_command', {
+        return fetch(window.location.href + 'shell_command', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 
     timeButton.addEventListener('click', function() {
-        window.location.href = 'http://127.0.0.1:8080/set_time';
+        window.location.href += 'set_time';
     });
 
     restartButton.addEventListener('click', async function() {

@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
             command_name: 'date',
             args: ['--set=' + '\"' + date.toISOString() + '\"']
         };
-        fetch('http://127.0.0.1:8080/shell_command', {
+        fetch(window.location.origin + '/shell_command', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
